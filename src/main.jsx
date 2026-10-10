@@ -22,7 +22,7 @@ function App() {
     /></div>
     <div className="ambient" aria-hidden="true"/>
     <div className="digital-city" aria-hidden="true">
-      <img src={`${assetBase}assets/digital-city-bottom-v2.png`} alt="" draggable="false" />
+      <img src={`${assetBase}assets/digital-city-bottom-v3.png`} alt="" draggable="false" />
     </div>
     <section className="visual" aria-label="低空警务飞行器展示">
       <Drone paused={false} replay={0} reduced={reduced}/>
