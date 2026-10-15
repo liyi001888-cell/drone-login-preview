@@ -107,6 +107,7 @@ export default function Drone({ paused, replay, reduced }) {
       };
       let elapsed = 0, last = performance.now(), seenReplay = control.current.replay;
       const rotors = [];
+      const rotorAxis = new THREE.Vector3(0, 1, 0);
       const resize = () => {
         const {width,height} = host.current.getBoundingClientRect();
         if (!width || !height) return;
@@ -189,7 +190,8 @@ export default function Drone({ paused, replay, reduced }) {
         rig.rotation.y = .82 - .12*(1-ease) + Math.sin(t*.32)*.009*ease;
         // One revolution per 4 seconds.
         if(!c.paused && !c.reduced) rotors.forEach(r => {
-          r.rotation.y += dt*(Math.PI*2/4)*r.userData.spinDirection;
+          // Rotate about the shaft, independent of the imported Euler decomposition.
+          r.rotateOnAxis(rotorAxis, dt*(Math.PI*2/4)*r.userData.spinDirection);
         });
         renderer.render(scene,camera);
       };
